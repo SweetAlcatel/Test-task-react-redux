@@ -1,0 +1,40 @@
+button {
+    text-align: center;
+    min-width: 20%;
+    color: #fff;  
+    background: rgb(212,75,56); 
+    padding: 10px;
+    border: none;
+}
+
+button:hover {
+    background: rgb(232,95,76);
+}
+
+button:active {
+    background: rgb(152,15,0);
+}
+
+.list-none {
+    display: none;
+}
+
+.list-visible {
+    width: 400px;   
+}
+
+.liked-list {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.liked-list button {
+    align-self: center;
+}
+
+.liked-element {
+    list-style: none;
+    border: 1px solid #eee;
+    background: white;
+}

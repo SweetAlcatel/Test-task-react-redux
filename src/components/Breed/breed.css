@@ -3,3 +3,8 @@ li {
     border: 1px solid #eee;
     background: white;
 }
+
+.cat-and-facts {
+    display: inline-block;
+    width: 80%;
+}
