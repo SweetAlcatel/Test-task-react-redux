@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import './app.css';
 import Breed from '../Breed/breed';
+import LikedList from '../LikedList/liked-list';
 import { fetchData } from '../Actions/actions';
 import { connect } from 'react-redux';
 
@@ -12,6 +13,7 @@ const App = ({ data, fetchData }) => {
 
     return (
         <div className='app'>
+            <LikedList />
             {
                 data.map((item) => {
                     return (
