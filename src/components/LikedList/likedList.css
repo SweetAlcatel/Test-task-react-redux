@@ -1,3 +1,7 @@
+li {
+    list-style: none;
+}
+
 .likedList button:hover {
     background: rgb(232,95,76);
 }
@@ -26,10 +30,11 @@
 }
 
 .likedElement {
+    background-color: green;
+    height: 300px;
     width: 300px;
     list-style: none;
     border: 1px solid #eee;
-    background: white;
 }
 
 .listNone {
@@ -37,5 +42,7 @@
 }
 
 .listVisible {
+    display: flex;
+    flex-direction: row;
     width: 400px;   
 }

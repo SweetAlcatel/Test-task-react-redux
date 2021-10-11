@@ -25,32 +25,22 @@ const LikedList = () => {
         }
     }
 
-    const element = likedData.map((item) => {
+    const element = likedData.map((item, i) => {
         return (
-            <div className=''>
-                <h1>{item.name}</h1>
-                <span>{item.temperament}</span>
-                <p>{item.description}</p>
-            </div>
+            <ul key={i} className={classNamez}>
+                    <li className='likedElement'>
+                        <h1>{item.name}</h1>
+                        <span>{item.temperament}</span>
+                        <p>{item.description}</p>
+                    </li>
+            </ul>
         );
-    });
+    })
 
     return (
         <div className='likedList'>
             <button onClick={handleClick}>Show liked list</button>
-            <ul className={classNamez}>
-                {
-                    likedData.map((item, i) => {
-                        return (
-                            <li key={i} className='likedElement'>
-                                <h1>{item.name}</h1>
-                                <span>{item.temperament}</span>
-                                <p>{item.description}</p>
-                            </li>
-                        );
-                    })
-                }
-            </ul>
+            {likedData.length === 0 ? <ul className={classNamez}><li>An empty liked list</li></ul>: element}
         </div>
     );
 };
