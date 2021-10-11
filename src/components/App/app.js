@@ -1,44 +1,27 @@
-import React, { useEffect } from 'react';
-import './app.css';
-import Breed from '../Breed/breed';
-import LikedList from '../LikedList/liked-list';
-import { fetchData } from '../Actions/actions';
-import { connect } from 'react-redux';
+import React, { useEffect } from "react";
+import Styles from "./app.module.css";
+import { Breed } from "../Breed/breed";
+import LikedList from "../LikedList/likedList";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchData } from "../Actions/actions";
 
-const App = ({ data, fetchData }) => {
+export const App = () => {
+  
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.data);
 
-    useEffect(() => {
-        fetchData()
-    }, []);
+  useEffect(() => {
+    dispatch(fetchData());
+  }, []);
 
-    return (
-        <div className='app'>
-            <LikedList />
-            {
-                data.map((item) => {
-                    return (
-                        <ul key={item.id}>
-                            <Breed name={item.name} temperament={item.temperament} description={item.description}/>
-                        </ul>
-                    );
-                })
-            }
-        </div>
-    );
+  return (
+    <div className={Styles.app}>
+      <LikedList />
+      {data.map((item, i) => {
+        return <Breed key={i} {...item}/>
+      })}
+    </div>
+  );
 };
 
-const mapStateToProps = ({ data }) => {
-    return {
-        data: data
-    };
-};
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchData: () => {
-            dispatch(fetchData())
-        }
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,0 +1,41 @@
+.likedList button:hover {
+    background: rgb(232,95,76);
+}
+
+.likedList button:active {
+    background: rgb(152,15,0);
+}
+
+.likedList {
+    margin-left: 20px;
+    min-width: 200px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.likedList button {
+    color: #fff; 
+    text-decoration: none; 
+    background: rgb(212,75,56);
+    padding: .7em 1.5em; 
+    outline: none; 
+    width: 20%;
+    border: none;
+    align-self: center;
+}
+
+.likedElement {
+    width: 300px;
+    list-style: none;
+    border: 1px solid #eee;
+    background: white;
+}
+
+.listNone {
+    display: none;
+}
+
+.listVisible {
+    width: 400px;   
+}
