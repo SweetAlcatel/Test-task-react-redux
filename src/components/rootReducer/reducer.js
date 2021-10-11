@@ -20,16 +20,32 @@ const reducer = (state = initialState, action) => {
         case 'LIKE_ITEM':
 
             const likedItems1 = state.data.filter((item) => {
-                if(item.id === action.id) {
+                return item.id === action.id ? {...item, done: true} : null
+            });
+            const unionArray = state.likedData.concat(likedItems1);
+            
+            const newArrayLikeDone = unionArray.map((item) => {
+                return { 
+                    ...item,
+                    done: !item.true
+                }
+            });
+
+            return {
+                ...state,
+                likedData: newArrayLikeDone
+            }
+        case 'DELETE_ITEM':
+
+            const deleteItemData = state.data.filter((item) => {
+                if(item.id !== action.id) {
                     return item
                 }
             });
 
-            const newArrayLiked = state.likedData.concat(likedItems1)
-
             return {
                 ...state,
-                likedData: newArrayLiked
+                data: deleteItemData
             }
         default: 
             return state;   
