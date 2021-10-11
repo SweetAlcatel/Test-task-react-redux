@@ -13,6 +13,13 @@ const likeElement = (id) => {
     };
 };
 
+const deleteElement = (id) => {
+    return {
+        type: 'DELETE_ITEM',
+        id
+    };
+};
+
 const fetchData = () => {
     return (dispatch) => {
         fetch('https://api.thecatapi.com/v1/breeds')
@@ -24,5 +31,6 @@ const fetchData = () => {
 export {
     dataSuccess,
     fetchData,
-    likeElement
+    likeElement,
+    deleteElement
 };
