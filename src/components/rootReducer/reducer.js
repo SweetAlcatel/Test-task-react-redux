@@ -4,49 +4,66 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-
     switch(action.type) {
         case 'DATA_SUCCESS':
             const newDataWithDoneFlag = action.payload.map((item) => {
-                return {
-                    ...item,
-                    done: false
-                } 
+                return item
             });
             return {
                 ...state,
                 data: newDataWithDoneFlag
-            }
-        case 'LIKE_ITEM':
+            };
 
-            const likedItems1 = state.data.filter((item) => {
-                return item.id === action.id ? {...item, done: true} : null
+        case 'LIKE_ITEM':
+            const likedItems = state.data.filter((item) => {
+                return item.id === action.id ? item : null
             });
-            const unionArray = state.likedData.concat(likedItems1);
-            
-            const newArrayLikeDone = unionArray.map((item) => {
-                return { 
-                    ...item,
-                    done: !item.true
-                }
-            });
+            const likedArray = state.likedData.concat(likedItems);
 
             return {
                 ...state,
-                likedData: newArrayLikeDone
+                likedData: likedArray
             }
-        case 'DELETE_ITEM':
 
+
+        case 'UNLIKE_ITEM':
+            const deleteIndex = state.likedData.findIndex((el) => {
+                return el.id === action.id 
+            });
+
+            const deleteLikedData = [
+                ...state.likedData.slice(0, deleteIndex),
+                ...state.likedData.slice(deleteIndex + 1)
+            ];
+        
+            return {
+                ...state,
+                likedData: deleteLikedData
+            }
+
+
+        case 'DELETE_ITEM':
             const deleteItemData = state.data.filter((item) => {
                 if(item.id !== action.id) {
                     return item
                 }
             });
+            // если удаляем из основных данных, то удаляем из списка лайканных
+            const deleteLikedIndex = state.likedData.findIndex((el) => {
+                return el.id === action.id
+            });
+
+            const deleteLikedItems = [
+                ...state.likedData.slice(0, deleteLikedIndex),
+                ...state.likedData.slice(deleteLikedIndex+1)
+            ];
 
             return {
-                ...state,
-                data: deleteItemData
+                data: deleteItemData,
+                likedData: deleteLikedItems
             }
+
+            
         default: 
             return state;   
     };
