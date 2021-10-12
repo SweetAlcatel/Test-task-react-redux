@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import classNames from 'classnames';
 import './likedList.css';
 
 const LikedList = () => {
@@ -8,31 +9,22 @@ const LikedList = () => {
 
     console.log(likedData);
 
-    const stateClassName ={
-        none: 'listNone',
-        visible: 'listVisible'
-    };
-
-    const [classNamez, setClassNamez] = useState(stateClassName.none);
+    const [isVisible, setIsVisible] = useState(true);
 
     const handleClick = () => {
-        const { none, visible } = stateClassName
-        if (classNamez === none) {
-            setClassNamez(visible)
-        }
-        if (classNamez == visible) {
-            setClassNamez(none)
-        }
-    }
+        setIsVisible(!isVisible)
+    };
+
+    const Classes = classNames(!isVisible && 'list');
 
     const element = likedData.map((item, i) => {
         return (
-            <ul key={i} className={classNamez}>
-                    <li className='likedElement'>
-                        <h1>{item.name}</h1>
-                        <span>{item.temperament}</span>
-                        <p>{item.description}</p>
-                    </li>
+            <ul key={i}>
+                <li className='likedElement'>
+                    <h1>{item.name}</h1>
+                    <span>{item.temperament}</span>
+                    <p>{item.description}</p>
+                </li>
             </ul>
         );
     })
@@ -40,7 +32,7 @@ const LikedList = () => {
     return (
         <div className='likedList'>
             <button onClick={handleClick}>Show liked list</button>
-            {likedData.length === 0 ? <ul className={classNamez}><li>An empty liked list</li></ul>: element}
+            {likedData.length === 0 && !isVisible ? <ul className={Classes}><li>An empty liked list</li></ul> : element}
         </div>
     );
 };
