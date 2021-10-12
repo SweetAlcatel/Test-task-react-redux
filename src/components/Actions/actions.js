@@ -1,4 +1,3 @@
-
 const dataSuccess = (payload) => {
     return {
         type: 'DATA_SUCCESS',
@@ -9,6 +8,13 @@ const dataSuccess = (payload) => {
 const likeElement = (id) => {
     return {
         type: 'LIKE_ITEM',
+        id: id
+    };
+};
+
+const unLikeElement = (id) => {
+    return {
+        type: 'UNLIKE_ITEM',
         id: id
     };
 };
@@ -32,5 +38,6 @@ export {
     dataSuccess,
     fetchData,
     likeElement,
-    deleteElement
+    deleteElement,
+    unLikeElement
 };
