@@ -1,5 +1,5 @@
 .catAndFacts {
-    min-height: 250px;
+    min-height: 200px;
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -45,4 +45,9 @@
 
 .actionDelete:hover {
     background-color: rgb(255, 38, 0);
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
 }

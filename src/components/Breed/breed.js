@@ -19,13 +19,15 @@ export const Breed = ({ id, name, temperament, description }) => {
     };
 
     return (
-        <li className={Styles.catAndFacts}>
+        <div className={Styles.catAndFacts}>
             <h1>{name}</h1> 
             <span>{temperament}</span>
             <p>{description}</p>
-            <button id={id} className={Styles.actionLike} onClick={() => option(id)}>Like</button>
-            <button id={id} className={Styles.actionDelete} onClick={() => dispatch(deleteElement(id))}>Delete</button>
-        </li>
+            <div className={Styles.buttons}>
+                <button id={id} className={Styles.actionLike} onClick={() => option(id)}>Like</button>
+                <button id={id} className={Styles.actionDelete} onClick={() => dispatch(deleteElement(id))}>Delete</button>
+            </div>
+        </div>
     );
 };
 
