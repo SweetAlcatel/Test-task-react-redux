@@ -17,23 +17,19 @@ const LikedList = () => {
 
   const element = likedData.map((item, i) => {
     return (
-      <ul key={i} className={isVisible}>
-        <li className="likedElement">
+        <div className={isVisible} key={i}>
           <h1>{item.name}</h1>
           <span>{item.temperament}</span>
           <p>{item.description}</p>
-        </li>
-      </ul>
+        </div>
     );
   });
 
   return (
     <div className="likedList">
       <button onClick={handleClick}>Show liked list</button>
-      {likedData.length === 0 ? (
-        <ul className={isVisible}>
-          <li>An empty liked list</li>
-        </ul>
+      {likedData.length === 0 && isVisible !== 'list-not-visible' ? (
+          <span>An empty liked list</span>
       ) : (
         element
       )}
