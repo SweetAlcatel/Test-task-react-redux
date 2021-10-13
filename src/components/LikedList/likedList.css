@@ -41,10 +41,12 @@ li {
     border: 1px solid #eee;
 }
 
-.listNone {
+.list-not-visible {
     display: none;
 }
 
-.listVisible {
-    width: 400px;   
+.list-visible {
+    display: flex;
+    flex-direction: row;
 }
+
