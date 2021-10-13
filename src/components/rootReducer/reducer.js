@@ -6,12 +6,12 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch(action.type) {
         case 'DATA_SUCCESS':
-            const newDataWithDoneFlag = action.payload.map((item) => {
+            const newData = action.payload.map((item) => {
                 return item
             });
             return {
                 ...state,
-                data: newDataWithDoneFlag
+                data: newData
             };
 
         case 'LIKE_ITEM':
@@ -48,7 +48,7 @@ const reducer = (state = initialState, action) => {
                     return item
                 }
             });
-            // если удаляем из основных данных, то удаляем из списка лайканных
+    
             const deleteLikedIndex = state.likedData.findIndex((el) => {
                 return el.id === action.id
             });
@@ -63,7 +63,7 @@ const reducer = (state = initialState, action) => {
                 likedData: deleteLikedItems
             }
 
-            
+
         default: 
             return state;   
     };
